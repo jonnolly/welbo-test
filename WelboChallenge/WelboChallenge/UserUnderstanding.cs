@@ -15,18 +15,17 @@ namespace WelboChallenge
         /// </summary>
         /// <param name="greetingVariations"></param>
         /// <param name="greetingMatchers"></param>
-        public void ReadUserInput(string prompt, string[] greetingVariations, string[] greetingMatchers)
+        public void ReadUserInput(string[] greetingVariations, string[] greetingMatchers)
         {
             int nTries = 0;
             bool bSuccessfulUserInput = false;
             while(!bSuccessfulUserInput && nTries++ < _nTimeoutTries)
             {
-                _userInteraction.WriteConsoleLine(prompt);
                 var input = _userInteraction.ReadConsoleLine();
                 bSuccessfulUserInput = InputMatchesVariations(input, greetingVariations, greetingMatchers);
 
                 if (!bSuccessfulUserInput)
-                    _userInteraction.WriteConsoleLine("Sorry I didn't understand. Could you rephrase your answer please?");
+                    _userInteraction.WriteConsoleLine("Sorry I didn't understand. Could you rephrase that for me please?");
             }
         }
 
@@ -37,13 +36,19 @@ namespace WelboChallenge
         /// <param name="inputVariations"></param>
         /// <param name="inputMatchers"></param>
         /// <returns>whether or not the string matched the inputted variations</returns>
-        private bool InputMatchesVariations(string userInput, string[] inputVariations, string[] inputMatchers)
+        private bool InputMatchesVariations(string userInput, string[] inputVariations = null, string[] inputMatchers = null)
         {
             // lowercase, so that any case is accepted
             var userInputLowercase = userInput.ToLower();
 
-            bool exactMatch = inputVariations.Contains(userInputLowercase);
-            bool regexMatch = inputMatchers.Any(inputMatcher => Regex.IsMatch(userInputLowercase, inputMatcher));
+            bool exactMatch = false;
+            bool regexMatch = false;
+
+            if (inputVariations?.Count() > 0)
+                exactMatch = inputVariations.Contains(userInputLowercase);
+
+            if(inputMatchers?.Count() > 0)
+                regexMatch = inputMatchers.Any(inputMatcher => Regex.IsMatch(userInputLowercase, inputMatcher));
 
             return exactMatch || regexMatch;
         }

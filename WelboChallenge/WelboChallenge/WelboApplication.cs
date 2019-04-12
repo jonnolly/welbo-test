@@ -17,12 +17,16 @@ namespace WelboChallenge
             // matches "Ello ello", "ello ello Ello" etc
             // as well as "HELLOO", "hellooooooooooo" etc
             string[] greetingMatchers = { "^ello( ello)*$", "^hello+$" };
-
             string greeting = "Hello and welcome! Are you here for an appointment?";
 
-            userUnderstanding.ReadUserInput(greeting, greetingVariations, greetingMatchers);
+            userUnderstanding.ReadUserInput(greetingVariations, greetingMatchers);
+            userIteraction.WriteConsoleLine(greeting);
 
-
+            string[] yesVariations = { "yes", "yup" };
+            userUnderstanding.ReadUserInput(yesVariations, null);
+            userIteraction.WriteConsoleLine("Lovely stuff. What is your name?");
+            
+           // userUnderstanding.ReadUserInput(namePrompt, )
         }
     }
 }
