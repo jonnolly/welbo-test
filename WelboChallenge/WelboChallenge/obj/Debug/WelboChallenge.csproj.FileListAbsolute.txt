@@ -1,0 +1,6 @@
+D:\John Stuff\Programming Tasks\Welbo\WelboCSharp\WelboChallenge\WelboChallenge\bin\Debug\WelboChallenge.exe.config
+D:\John Stuff\Programming Tasks\Welbo\WelboCSharp\WelboChallenge\WelboChallenge\bin\Debug\WelboChallenge.exe
+D:\John Stuff\Programming Tasks\Welbo\WelboCSharp\WelboChallenge\WelboChallenge\bin\Debug\WelboChallenge.pdb
+D:\John Stuff\Programming Tasks\Welbo\WelboCSharp\WelboChallenge\WelboChallenge\obj\Debug\WelboChallenge.csproj.CoreCompileInputs.cache
+D:\John Stuff\Programming Tasks\Welbo\WelboCSharp\WelboChallenge\WelboChallenge\obj\Debug\WelboChallenge.exe
+D:\John Stuff\Programming Tasks\Welbo\WelboCSharp\WelboChallenge\WelboChallenge\obj\Debug\WelboChallenge.pdb
