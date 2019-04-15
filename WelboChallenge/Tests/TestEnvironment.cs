@@ -37,9 +37,9 @@ namespace Tests
         }
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        public TestEnvironment UserSaysHelloAndYesAndEntersName()
+        public TestEnvironment UserSaysHelloAndYesAndEntersNameAndYes()
         {
-            _userInteractionSub.ReadConsoleLine().Returns("hello", "yes", _testClientName);
+            _userInteractionSub.ReadConsoleLine().Returns("hello", "yes", _testVisitorName, "yes");
 
             return this;
         }
@@ -75,7 +75,7 @@ namespace Tests
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         public TestEnvironment AssertThatHostNameIsGiven()
         {
-            _userInteractionSub.Received(1).WriteConsoleLine(Arg.Is("Can you confirm that you have an appointment with" + _testHostName + "?"));
+            _userInteractionSub.Received(1).WriteConsoleLine(Arg.Is("You have an appointment with Roeland van Oers.\n Would you like to check in for this appointment?"));
 
             return this;
         }
@@ -93,8 +93,8 @@ namespace Tests
         // private
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private IUserInteraction _userInteractionSub;
-        private const string _testClientName = "Bill Murray";
-        private const string _testHostName = "David Letterman";
+        private const string _testVisitorName = "Stanislav Minev";
+        private const string _testEmployeeName = "Roeland van Oers";
         private const string _greeting = "Hello and welcome! Are you here for an appointment?";
         private const string _repeatAnswerPrompt = "Sorry I didn't understand. Could you rephrase that for me please?";
 

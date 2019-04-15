@@ -35,7 +35,7 @@ namespace WelboChallenge
             string employeeName = "";
             if(AppointmentManager.GetAppointment(ref employeeName, guestName))
             {
-                userInteraction.WriteConsoleLine("You have an appointment with " + employeeName + ".\n Would you like to check in?");
+                userInteraction.WriteConsoleLine("You have an appointment with " + employeeName + ".\n Would you like to check in for this appointment?");
                 if (userUnderstanding.ReadUserInput(ref userInput, yesVariations))
                 {
                     AppointmentManager.CheckInAppointment();

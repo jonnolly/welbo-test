@@ -10,53 +10,47 @@ namespace WelboChallenge
 {
     public class AppointmentManager
     {
-        // Assume that the structure is
-        // with each appointment starting with "appointmentId" and containing any number of
-        // visitorName and employeeName with any arrangement
-
-        // Appointment 1
-        // appointmentId 1
-        // visitorName Guest One
-        // employeeName Host One
-        // employeeName Host Wwo
-        // visitorName Guest Two
         public static bool GetAppointment(ref string employeeName, string guestName)
         {
             string[] lines = File.ReadAllLines(@"../../../Appointments.txt");
-            // every time we have an appointmentId, go down until the next appointmentId or the end
 
             for (int i = 0; i < lines.Length; i++)
             {
+                var currentLine = lines[i];
                 if(lines[i].Contains(guestName))
                 {
+                    var appointmentIdLine = lines[i - 1];
+                    var guestNameLine = lines[i];
+                    var employeeNameLine = lines[i + 1];
 
+                    var appointmentKeyValuePair = GetConfigPair(appointmentIdLine);
+                    var visitorKeyValuePair = GetConfigPair(guestNameLine);
+                    var employeeKeyValuePair = GetConfigPair(employeeNameLine);
 
-
-                    return true;
+                    if (appointmentKeyValuePair.Item1 == _settingAppointmentId && visitorKeyValuePair.Item1 == _settingVisitorName && employeeKeyValuePair.Item1 == _settingEmployeeName)
+                    {
+                        employeeName = employeeKeyValuePair.Item2;
+                        return int.TryParse(appointmentKeyValuePair.Item2, out _currentlyEvaluatedAppointment);
+                    }
                 }
-                // check line contains visitorName
-                // if so, create appointment and store in _currentlyEvaluatedAppointment
-                // check previous line & next line that they match appointmentId & employeeName.
-                // if so, create new currentlyEveluatedAppointment and return employeeName
             }
 
             return false;
         }
 
-        public static void CheckInAppointment()
+        private static Tuple<string, string> GetConfigPair(string configLine)
         {
-            // check in appointment
-            // null _currentlyEvaluatedAppointment
+            var spaceIndex = configLine.IndexOf(' ');
+            var keyString = new string(configLine.Take(spaceIndex).ToArray());
+            var valueString = new string(configLine.Skip(spaceIndex + 1).ToArray());
+
+            return new Tuple<string, string>(keyString, valueString);
         }
 
-        //private static KeyValuePair<string, string> GetKeyValuePairFromConfigLine(string configLine)
-        //{
-        //    var spaceIndex = configLine.IndexOf(' ') + 1;
-        //    var keyString = new string(configLine.Take(spaceIndex).ToArray());
-        //    var valueString = new string(configLine.Skip(configLine.IndexOf(' ') + 1).ToArray());
+        public static void CheckInAppointment()
+        {
 
-        //    return new KeyValuePair<string, string>(keyString, valueString);
-        //}
+        }
 
         // private
         private static string _settingAppointmentId = "appointmentId";

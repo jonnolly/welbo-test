@@ -11,3 +11,13 @@ Future Improvements:
 
  - If the user does not have an appointment, the ability to book an additional appointment could easily be added
 	*	An additional field, "employeeConfirmed" could be created to confirm that the host/hosts can attend
+
+ - Add greater test coverage to cover every possibility.
+
+ - Change "UserSaysHelloAndYesAndEntersNameAndYes" test method so that each method built a string array in tests
+	*	Resulting implementation in tests would appear as follows and could be chained:
+
+		testEnvironment.UserSaysHello()
+			.UserSaysYes()
+			.UserEntersName()
+			.UserSaysYes();
