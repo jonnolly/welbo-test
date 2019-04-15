@@ -96,7 +96,7 @@ namespace Tests
         private const string _testClientName = "Bill Murray";
         private const string _testHostName = "David Letterman";
         private const string _greeting = "Hello and welcome! Are you here for an appointment?";
-        private const string _repeatAnswerPrompt = "Sorry I didn't understand. Could you rephrase your answer please?";
+        private const string _repeatAnswerPrompt = "Sorry I didn't understand. Could you rephrase that for me please?";
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

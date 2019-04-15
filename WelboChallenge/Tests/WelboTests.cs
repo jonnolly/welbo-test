@@ -26,8 +26,8 @@ namespace Tests
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         [TestMethod]
-        // [Timeout(500)]
-        public void GivenUserStartsProgram_WhenUserGivesUnrecognisedAnswer_WelboSaysAsksToRepeat()
+        [Timeout(500)]
+        public void GivenUserStartsProgram_WhenUserGivesUnrecognisedAnswer_WelboAsksToRepeat()
         {
             // Arrange
             TestEnvironment testEnvironment = new TestEnvironment()

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestEnvironment.cs" />
+    <Compile Include="UserUnderstandingTests.cs" />
     <Compile Include="WelboTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

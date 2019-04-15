@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -11,9 +12,7 @@ namespace WelboChallenge
     {
         public static List<Appointment> GetAppointments()
         {
-            string regexMatch = "(a-zA-Z) (\\d)";
-            var test = Regex.IsMatch("numberOfAppointments 3", regexMatch);
-
+            string[] lines = File.ReadAllLines(@"../../Appointments.txt");
 
             return null;
         }
