@@ -58,15 +58,14 @@ namespace Tests
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         [TestMethod]
-        [Timeout(500)]
+        // [Timeout(500)]
         public void GivenUserSaysHello_WhenUserGivesName_WelboGivesAppointmentHostName()
         {
             // Arrange
             TestEnvironment testEnvironment = new TestEnvironment()
-            .UserSaysHello()
 
             // Act
-            .UserEntersName()
+            .UserSaysHelloAndYesAndEntersName()
             .Initialize()
 
             // Assert

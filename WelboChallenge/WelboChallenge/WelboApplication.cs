@@ -8,9 +8,9 @@ namespace WelboChallenge
 {
     internal class WelboApplication
     {
-        public static void RunApplication(IUserInteraction userIteraction)
+        public static void RunApplication(IUserInteraction userInteraction)
         {
-            var userUnderstanding = new UserUnderstanding(userIteraction);
+            var userUnderstanding = new UserUnderstanding(userInteraction);
 
             string userInput = "";
             string[] greetingVariations = { "hello", "hi", "howdy" };
@@ -21,17 +21,31 @@ namespace WelboChallenge
             if (!userUnderstanding.ReadUserInput(ref userInput, greetingVariations, greetingMatchers))
                 return;
 
-            userIteraction.WriteConsoleLine("Hello and welcome! Are you here for an appointment?");
+            userInteraction.WriteConsoleLine("Hello and welcome! Are you here for an appointment?");
             string[] yesVariations = { "yes", "yup" };
             if (!userUnderstanding.ReadUserInput(ref userInput, yesVariations, null))
                 return;
 
-            userIteraction.WriteConsoleLine("Lovely stuff. What is your full name?");
+            string guestName = "";
+            userInteraction.WriteConsoleLine("Lovely stuff. What is your full name?");
             string[] nameRegex = { "([a-zA-Z]+\\s*\\b){2,}" };
-            if (!userUnderstanding.ReadUserInput(ref userInput, null, nameRegex))
+            if (!userUnderstanding.ReadUserInput(ref guestName, null, nameRegex))
                 return;
 
-            var appointments = ConfigReader.GetAppointments();
+            string employeeName = "";
+            if(AppointmentManager.GetAppointment(ref employeeName, guestName))
+            {
+                userInteraction.WriteConsoleLine("You have an appointment with " + employeeName + ".\n Would you like to check in?");
+                if (userUnderstanding.ReadUserInput(ref userInput, yesVariations))
+                {
+                    AppointmentManager.CheckInAppointment();
+                    userInteraction.WriteConsoleLine("You're all checked in! Please take a seat.");
+                }
+            }
+            else
+            {
+                userInteraction.WriteConsoleLine("I'm afraid you don't have an appointment in the system.");
+            }
         }
     }
 }

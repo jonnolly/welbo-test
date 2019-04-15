@@ -37,9 +37,9 @@ namespace Tests
         }
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        public TestEnvironment UserEntersName()
+        public TestEnvironment UserSaysHelloAndYesAndEntersName()
         {
-            _userInteractionSub.ReadConsoleLine().Returns(_testClientName);
+            _userInteractionSub.ReadConsoleLine().Returns("hello", "yes", _testClientName);
 
             return this;
         }

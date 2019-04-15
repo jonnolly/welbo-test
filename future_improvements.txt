@@ -1,0 +1,13 @@
+Future Improvements:
+
+ - change so that instead of only having one guest & one visitor per appointment, there can be any number of either
+	*	this would be done by searching up and down the appointments.txt until the next appointmentId, matching any visitorName and employeeName that is found
+	*	then when any of the visitors enter their name, a list of hosts will be returned
+	*	in addition to this, check-ins would be done on a guest-by-guest basis, with each appointmentId having a corresponding index for each visitor eg. 1.2 for visitorName2
+
+ - Create exception classes for each scenario that could go wrong.
+	*	This can have handlers in a single try catch in Program.cs to avoid having many nested "try" levels.
+	*	Each handler could have different output information to give to the user
+
+ - If the user does not have an appointment, the ability to book an additional appointment could easily be added
+	*	An additional field, "employeeConfirmed" could be created to confirm that the host/hosts can attend
