@@ -1,9 +1,4 @@
 ﻿using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WelboChallenge;
 
 namespace Tests
@@ -37,7 +32,7 @@ namespace Tests
         }
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        public TestEnvironment UserSaysHelloAndYesAndEntersNameAndYes()
+        public TestEnvironment UserSaysHelloAndYesAndEntersNameAndSaysYes()
         {
             _userInteractionSub.ReadConsoleLine().Returns("hello", "yes", _testVisitorName, "yes");
 

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace WelboChallenge
 {
     public class AppointmentManager
     {
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         public static bool GetAppointment(ref string employeeName, string guestName)
         {
             string[] lines = File.ReadAllLines(@"../../../Appointments.txt");
@@ -38,6 +35,40 @@ namespace WelboChallenge
             return false;
         }
 
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        public static void CheckInAppointment()
+        {
+            var checkinsPath = @"../../../Checkins.txt";
+            string[] lines = File.ReadAllLines(checkinsPath);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                var line = lines[i];
+                var appointmentPair = GetConfigPair(line);
+                int appointmentNumber;
+                if (int.TryParse(appointmentPair.Item1, out appointmentNumber))
+                {
+                    if (appointmentNumber == _currentlyEvaluatedAppointment)
+                    {
+                        // update existing
+                        string dateTime = DateTime.Now.ToString("yyyy-MM-ddThh:mm:ssZ");
+                        lines[i] = _currentlyEvaluatedAppointment.ToString() + " " + dateTime;
+                    }
+                }
+            }
+
+            File.WriteAllLines(checkinsPath, lines);
+        }
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // private 
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        private static string _settingAppointmentId = "appointmentId";
+        private static string _settingVisitorName = "visitorName";
+        private static string _settingEmployeeName = "employeeName";
+        private static int _currentlyEvaluatedAppointment;
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private static Tuple<string, string> GetConfigPair(string configLine)
         {
             var spaceIndex = configLine.IndexOf(' ');
@@ -47,17 +78,9 @@ namespace WelboChallenge
             return new Tuple<string, string>(keyString, valueString);
         }
 
-        public static void CheckInAppointment()
-        {
-
-        }
-
-        // private
-        private static string _settingAppointmentId = "appointmentId";
-        private static string _settingVisitorName = "visitorName";
-        private static string _settingEmployeeName = "employeeName";
-
-        private static int _currentlyEvaluatedAppointment;
-
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }

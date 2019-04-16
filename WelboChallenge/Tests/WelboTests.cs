@@ -65,7 +65,7 @@ namespace Tests
             TestEnvironment testEnvironment = new TestEnvironment()
 
             // Act
-            .UserSaysHelloAndYesAndEntersNameAndYes()
+            .UserSaysHelloAndYesAndEntersNameAndSaysYes()
             .Initialize()
 
             // Assert

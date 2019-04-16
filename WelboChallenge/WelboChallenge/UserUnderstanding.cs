@@ -5,16 +5,13 @@ namespace WelboChallenge
 {
     public class UserUnderstanding
     {
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         public UserUnderstanding(IUserInteraction userInteraction)
         {
             _userInteraction = userInteraction;
         }
-
-        /// <summary>
-        /// Prompts the user to provide a response
-        /// </summary>
-        /// <param name="greetingVariations"></param>
-        /// <param name="greetingMatchers"></param>
+        
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         public bool ReadUserInput(ref string userInput, string[] greetingVariations = null, string[] greetingMatchers = null)
         {
             int nTries = 0;
@@ -34,13 +31,13 @@ namespace WelboChallenge
             return bSuccessfulUserInput;
         }
 
-        /// <summary>
-        /// Reads user input and returns whether it matches variations
-        /// </summary>
-        /// <param name="userInput"></param>
-        /// <param name="inputVariations"></param>
-        /// <param name="inputMatchers"></param>
-        /// <returns>whether or not the string matched the inputted variations</returns>
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // private
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        private IUserInteraction _userInteraction;
+        private int _nTimeoutTries = 10;
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private bool InputMatchesVariations(string userInput, string[] inputVariations, string[] inputMatchers)
         {
             // if no matchers or variations provided, accept all user input
@@ -62,7 +59,9 @@ namespace WelboChallenge
             return exactMatch || regexMatch;
         }
 
-        private IUserInteraction _userInteraction;
-        private int _nTimeoutTries = 10;
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }
